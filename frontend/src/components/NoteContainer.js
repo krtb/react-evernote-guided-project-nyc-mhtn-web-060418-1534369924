@@ -5,7 +5,8 @@ import Content from './Content';
 
 class NoteContainer extends Component {
   state = {
-    notesData: []
+    notesData: [],
+    noteDetail: []
   }
 
   fetchNotesAPI = () => {
@@ -18,13 +19,20 @@ class NoteContainer extends Component {
     this.fetchNotesAPI()
   }
 
+  handleClick = (event, obj) => {
+    // console.log(obj)
+    this.setState({
+      noteDetail: obj
+    })
+  }
+
   render() {
     return (
       <Fragment>
         <Search />
         <div className='container'>
-          <Sidebar mainNotesData={this.state.notesData}  />
-          <Content />
+          <Sidebar showDetail={this.handleDetailClick} handleClick={this.handleClick} mainNotesData={this.state.notesData}  />
+          <Content noteDetail={this.state.noteDetail} />
         </div>
       </Fragment>
     );

@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 
 const NoteViewer = (props) => {
+  // console.log('cool', props.noteDetail.title);
   return (
     <Fragment>
-      <h2>Title</h2>
-      <p>Body</p>
+      <h2>{props.noteDetail.title}</h2>
+      <p>{props.noteDetail.body}</p>
       <button>Edit</button>
     </Fragment>
   );
