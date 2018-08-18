@@ -6,7 +6,8 @@ import Content from './Content';
 class NoteContainer extends Component {
   state = {
     notesData: [],
-    noteDetail: []
+    noteDetail: [],
+    noteEdit: []
   }
 
   fetchNotesAPI = () => {
@@ -20,9 +21,16 @@ class NoteContainer extends Component {
   }
 
   handleClick = (event, obj) => {
-    // console.log(obj)
+    // console.log(event, obj)
     this.setState({
       noteDetail: obj
+    })
+  }
+
+  handleEdit = (event, obj) => {
+    console.log('firstlevel',event, obj)
+    this.setState({
+      noteEdit: obj.noteDetail
     })
   }
 
@@ -31,8 +39,8 @@ class NoteContainer extends Component {
       <Fragment>
         <Search />
         <div className='container'>
-          <Sidebar showDetail={this.handleDetailClick} handleClick={this.handleClick} mainNotesData={this.state.notesData}  />
-          <Content noteDetail={this.state.noteDetail} />
+          <Sidebar handleClick={this.handleClick} mainNotesData={this.state.notesData}  />
+          <Content noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
         </div>
       </Fragment>
     );
