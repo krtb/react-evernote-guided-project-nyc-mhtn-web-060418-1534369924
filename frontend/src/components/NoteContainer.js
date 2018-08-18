@@ -7,7 +7,8 @@ class NoteContainer extends Component {
   state = {
     notesData: [],
     noteDetail: [],
-    noteEdit: []
+    noteEdit: [],
+    newData: []
   }
 
   fetchNotesAPI = () => {
@@ -28,7 +29,7 @@ class NoteContainer extends Component {
   }
 
   handleEdit = (event, obj) => {
-    console.log('firstlevel',event, obj)
+    // console.log('firstlevel',event, obj)
     this.setState({
       noteEdit: obj.noteDetail
     })
@@ -40,7 +41,7 @@ class NoteContainer extends Component {
         <Search />
         <div className='container'>
           <Sidebar handleClick={this.handleClick} mainNotesData={this.state.notesData}  />
-          <Content noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
+          <Content fetchNotes={this.fetchNotesAPI} noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
         </div>
       </Fragment>
     );
