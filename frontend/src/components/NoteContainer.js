@@ -8,7 +8,7 @@ class NoteContainer extends Component {
     notesData: [],
     noteDetail: [],
     noteEdit: [],
-    newData: []
+    cancelButton: false
   }
 
   fetchNotesAPI = () => {
@@ -31,7 +31,14 @@ class NoteContainer extends Component {
   handleEdit = (event, obj) => {
     // console.log('firstlevel',event, obj)
     this.setState({
-      noteEdit: obj.noteDetail
+      noteEdit: obj.noteDetail,
+      cancelButton: true
+    })
+  }
+
+  handleCancel = () => {
+    this.setState({
+      cancelButton: false
     })
   }
 
@@ -41,7 +48,7 @@ class NoteContainer extends Component {
         <Search />
         <div className='container'>
           <Sidebar handleClick={this.handleClick} mainNotesData={this.state.notesData}  />
-          <Content fetchNotes={this.fetchNotesAPI} noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
+          <Content cancelState={this.state.cancelButton} handleCancel={this.handleCancel} fetchNotes={this.fetchNotesAPI} noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
         </div>
       </Fragment>
     );

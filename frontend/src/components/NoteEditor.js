@@ -52,7 +52,7 @@ class NoteEditor extends Component {
         <textarea name="body" value={this.state.currentBody} onChange={this.handleBodyChange} />
         <div className="button-row">
           <input className="button" type="submit" value="Save" />
-          <button type="button">Cancel</button>
+          <button type="button" onClick={this.props.handleCancel}>Cancel</button>
         </div>
       </form>
     );
