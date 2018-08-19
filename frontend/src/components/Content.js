@@ -15,7 +15,7 @@ class Content extends Component {
     if (this.props.noteEdit.title && this.props.cancelState) {      
       return <NoteEditor handleCancel={this.props.handleCancel} fetchNotes={this.props.fetchNotes} noteEdit={this.props.noteEdit} handleEdit={this.props.handleEdit} />;
     } else if (this.props.noteDetail.title) {
-      // console.log(this.props.handleEdit);
+      // console.log(this.props.cancelState);
       return <NoteViewer handleEdit={this.props.handleEdit} noteDetail={this.props.noteDetail} />;
     } else {
       return <Instructions />;

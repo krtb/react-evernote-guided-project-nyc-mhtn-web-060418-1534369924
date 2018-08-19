@@ -24,12 +24,13 @@ class NoteContainer extends Component {
   handleClick = (event, obj) => {
     // console.log(event, obj)
     this.setState({
-      noteDetail: obj
+      noteDetail: obj,
+      cancelButton: false
     })
   }
 
   handleEdit = (event, obj) => {
-    // console.log('firstlevel',event, obj)
+    console.log('at the click level')
     this.setState({
       noteEdit: obj.noteDetail,
       cancelButton: true
@@ -48,7 +49,7 @@ class NoteContainer extends Component {
         <Search />
         <div className='container'>
           <Sidebar handleClick={this.handleClick} mainNotesData={this.state.notesData}  />
-          <Content cancelState={this.state.cancelButton} handleCancel={this.handleCancel} fetchNotes={this.fetchNotesAPI} noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
+          <Content handleCancel={this.handleCancel} cancelState={this.state.cancelButton} fetchNotes={this.fetchNotesAPI} noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
         </div>
       </Fragment>
     );
