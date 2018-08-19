@@ -30,7 +30,6 @@ class NoteContainer extends Component {
   }
 
   handleEdit = (event, obj) => {
-    console.log('at the click level')
     this.setState({
       noteEdit: obj.noteDetail,
       cancelButton: true
@@ -43,12 +42,35 @@ class NoteContainer extends Component {
     })
   }
 
+  handleNewNote = () => {
+    console.log("posted note");
+    let postTitle = 'default'
+    let postBody = 'placeholder' 
+    this.postNote(postTitle, postBody).then(()=>this.fetchNotesAPI())
+  }
+
+  postNote = (newTitle, newBody) => {
+    let postURL = 'http://localhost:3000/api/v1/notes'
+    let postNew = {
+      method: 'POST',
+      body: JSON.stringify({
+        title: newTitle, 
+        body: newBody
+      }),
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json'
+      }
+    }
+    return fetch(postURL, postNew).then(resp=>resp.json())
+  }
+
   render() {
     return (
       <Fragment>
         <Search />
         <div className='container'>
-          <Sidebar handleClick={this.handleClick} mainNotesData={this.state.notesData}  />
+          <Sidebar handleNewNote={this.handleNewNote} handleClick={this.handleClick} mainNotesData={this.state.notesData}  />
           <Content handleCancel={this.handleCancel} cancelState={this.state.cancelButton} fetchNotes={this.fetchNotesAPI} noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
         </div>
       </Fragment>

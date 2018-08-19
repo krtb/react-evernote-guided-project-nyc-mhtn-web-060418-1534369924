@@ -28,7 +28,7 @@ class NoteEditor extends Component {
       }),
       headers: {
         'Content-type': 'application/json',
-        'Accept': 'application/json',
+        'Accept': 'application/json'
       }
     }
     return fetch(editURL, editPatch).then(resp=>resp.json())
