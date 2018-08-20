@@ -53,11 +53,11 @@ class NoteEditor extends Component {
 
   render() {
     return (
-      <form className="note-editor" onClick={this.props.handleCancel} onSubmit={(event) => this.handleSubmit(event, this.props, this.state)}>
+      <form className="note-editor" onSubmit={(event) => this.handleSubmit(event, this.props, this.state)}>
         <input type="text" name="title" value={this.state.currentTitle} onChange={this.handleTitleChange} />
         <textarea name="body" value={this.state.currentBody} onChange={this.handleBodyChange} />
         <div className="button-row">
-          <input className="button" type="submit" value="Save" />
+          <input className="button" type="submit" value="Save" onClick={this.props.handleCancel}/>
           <button type="button" onClick={this.props.handleCancel}>Cancel</button>
         </div>
       </form>
