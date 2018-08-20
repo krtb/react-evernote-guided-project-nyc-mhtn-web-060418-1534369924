@@ -12,10 +12,11 @@ import Instructions from './Instructions';
 */
 class Content extends Component {
   renderContent = () => {
-    if (this.props.showState && this.props.cancelState) {      
+    if (this.props.showState === true && this.props.cancelState) {    
+      // console.log('show edit', this.props.showState)  
       return <NoteEditor showState={this.props.showState} handleCancel={this.props.handleCancel} fetchNotes={this.props.fetchNotes} noteEdit={this.props.noteEdit} handleEdit={this.props.handleEdit} />;
-    } else if (this.props.noteDetail.title) {
-      // console.log(this.props.cancelState);
+    } else if (this.props.showState === true) {
+      // console.log('show viewer', this.props.showState)  
       return <NoteViewer handleEdit={this.props.handleEdit} noteDetail={this.props.noteDetail} />;
     } else {
       return <Instructions />;

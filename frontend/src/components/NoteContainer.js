@@ -45,7 +45,7 @@ class NoteContainer extends Component {
   handleCancel = () => {
     this.setState({
       cancelButton: false,
-      noteClicked: true
+      noteClicked: false
     })
   }
 
