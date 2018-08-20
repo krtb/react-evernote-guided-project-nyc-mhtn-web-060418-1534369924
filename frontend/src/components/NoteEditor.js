@@ -43,12 +43,12 @@ class NoteEditor extends Component {
     // this.setState({
     //   noteClicked: false
     // })
-
     let editID = props.noteEdit.oneNote.id
     let editTitle = state.currentTitle
     let editBody = state.currentBody
     // console.log(event, props.noteEdit.oneNote.id, state.currentTitle, state.currentBody);
     this.updatePatch(editID, editTitle, editBody).then(()=> this.props.fetchNotes())
+    this.props.handleCancel()
   }
 
   render() {
