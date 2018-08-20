@@ -8,6 +8,7 @@ class NoteContainer extends Component {
     notesData: [],
     notesToFilter: [],
     noteDetail: [],
+    noteClicked: false,
     noteEdit: [],
     cancelButton: false,
     searchTerm: ''
@@ -27,7 +28,9 @@ class NoteContainer extends Component {
   handleClick = (event, obj) => {
     // console.log(event, obj)
     this.setState({
+      // can set state here!
       noteDetail: obj,
+      noteClicked: true,
       cancelButton: false
     })
   }
@@ -41,7 +44,8 @@ class NoteContainer extends Component {
 
   handleCancel = () => {
     this.setState({
-      cancelButton: false
+      cancelButton: false,
+      noteClicked: false
     })
   }
 
@@ -86,13 +90,29 @@ class NoteContainer extends Component {
     })
   }
 
+  handleDelete = (objID) => {
+    this.deleteRequest(objID).then(()=>this.fetchNotesAPI())
+  }
+
+  deleteRequest = (deleteID) => {
+    let deleteURL = `${'http://localhost:3000/api/v1/notes'}/${deleteID}`
+    let deleteMethod = {
+      method: 'DELETE',
+      headers: {
+          "Content-type": "application/json",
+          'Accept': 'application/json'
+        }
+    }
+    return fetch(deleteURL, deleteMethod).then(resp=>resp.json())
+  }
+
   render() {
     return (
       <Fragment>
         <Search handleSearch={this.handleSearch} />
         <div className='container'>
-          <Sidebar handleNewNote={this.handleNewNote} handleClick={this.handleClick} mainNotesData={this.state.notesToFilter}  />
-          <Content handleCancel={this.handleCancel} cancelState={this.state.cancelButton} fetchNotes={this.fetchNotesAPI} noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
+          <Sidebar handleDelete={this.handleDelete} handleNewNote={this.handleNewNote} handleClick={this.handleClick} mainNotesData={this.state.notesToFilter}  />
+          <Content showState={this.state.noteClicked} handleCancel={this.handleCancel} cancelState={this.state.cancelButton} fetchNotes={this.fetchNotesAPI} noteDetail={this.state.noteDetail} handleEdit={this.handleEdit} noteEdit={this.state.noteEdit}  />
         </div>
       </Fragment>
     );

@@ -37,6 +37,13 @@ class NoteEditor extends Component {
 
   handleSubmit = (event, props, state) => {
     event.preventDefault()
+
+    // would set state here
+    console.log(state)
+    // this.setState({
+    //   noteClicked: false
+    // })
+
     let editID = props.noteEdit.oneNote.id
     let editTitle = state.currentTitle
     let editBody = state.currentBody
@@ -46,8 +53,7 @@ class NoteEditor extends Component {
 
   render() {
     return (
-      // you were about to work on the on submit portion below
-      <form className="note-editor" onSubmit={(event) => this.handleSubmit(event, this.props, this.state)}>
+      <form className="note-editor" onClick={this.props.handleCancel} onSubmit={(event) => this.handleSubmit(event, this.props, this.state)}>
         <input type="text" name="title" value={this.state.currentTitle} onChange={this.handleTitleChange} />
         <textarea name="body" value={this.state.currentBody} onChange={this.handleBodyChange} />
         <div className="button-row">

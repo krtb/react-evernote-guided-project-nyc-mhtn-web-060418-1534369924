@@ -12,8 +12,8 @@ import Instructions from './Instructions';
 */
 class Content extends Component {
   renderContent = () => {
-    if (this.props.noteEdit.title && this.props.cancelState) {      
-      return <NoteEditor handleCancel={this.props.handleCancel} fetchNotes={this.props.fetchNotes} noteEdit={this.props.noteEdit} handleEdit={this.props.handleEdit} />;
+    if (this.props.showState && this.props.cancelState) {      
+      return <NoteEditor showState={this.props.showState} handleCancel={this.props.handleCancel} fetchNotes={this.props.fetchNotes} noteEdit={this.props.noteEdit} handleEdit={this.props.handleEdit} />;
     } else if (this.props.noteDetail.title) {
       // console.log(this.props.cancelState);
       return <NoteViewer handleEdit={this.props.handleEdit} noteDetail={this.props.noteDetail} />;
